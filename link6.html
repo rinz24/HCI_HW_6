@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .faq-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            width: 400px;
+        }
+
+        .question {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #fff; 
+            transition: background-color 0.3s ease; 
+        }
+
+        .question:hover {
+            background-color: #f0f0f0; 
+        }
+
+        .question.active {
+            background-color: #ffd699; 
+        }
+
+        .answer {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9; 
+        }
+    </style>
+    <title>Accordion FAQs</title>
+</head>
+<body>
+
+    <div class="faq-container">
+        <div class="question">
+            <h3>What is the product return policy?</h3>
+        </div>
+        <div class="answer">
+            <p>Our return policy allows for returns up to 30 days after purchase. Please refer to our <a href="#">return policy</a> for more details.</p>
+        </div>
+
+        <div class="question">
+            <h3>How can I track my order?</h3>
+        </div>
+        <div class="answer">
+            <p>You can easily track your order by logging into your account and navigating to the order history section. Alternatively, you can use the provided tracking number on the carrier's website.</p>
+        </div>
+
+        <div class="question">
+            <h3>What payment methods do you accept?</h3>
+        </div>
+        <div class="answer">
+            <p>We accept credit cards (Visa, MasterCard, American Express) and PayPal as payment methods.</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.question').click(function() {
+                $(this).next('.answer').slideToggle();
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

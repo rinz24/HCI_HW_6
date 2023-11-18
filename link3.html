@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dropdown-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dropdown {
+            position: relative;
+            user-select: none;
+            margin-right: 20px;
+            border: 2px solid #6d72da6a;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.481);
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+        }
+
+        .dropdown span {
+            font-size: 18px; 
+            font-family: sans-serif; 
+            font-weight: bold; 
+            color: #ffffff;
+        }
+
+        .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: center;
+            max-width: 200px;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            overflow: hidden;
+            transform: scale(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dropdown-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            display: none;
+            border-bottom: 2px solid #007BFF;
+        }
+
+        .dropdown-content img.active {
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            transform: scale(1);
+        }
+
+        .dropdown:hover .dropdown-content img {
+            display: none;
+        }
+
+        .dropdown:hover .dropdown-content img.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            text-decoration: none;
+            color: #fff; 
+            background-color: #333; 
+            display: block;
+            cursor: pointer;
+            margin-bottom: 2px; 
+        }
+
+        .back-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dropdown-logo {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #ffffff; 
+            background-color: #333; 
+            display: none;
+            padding: 10px; 
+        }
+    </style>
+
+    <title>Dropdown with Multiple Photos</title>
+</head>
+
+<body>
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <span>MSI</span>
+            <div class="dropdown-content">
+                <img src="Images/MSI1.png" alt="Stealth GS77" class="active">
+                <img src="Images/MSI2.png" alt="Raider GE76">
+                <img src="Images/MSI3.png" alt="Vector GP66">
+                <img src="Images/MSI4.png" alt="Crosshair 15">
+                <img src="Images/MSI5.png" alt="Katana GF76">
+                <div class="dropdown-item next">Next</div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>ROG</span>
+            <div class="dropdown-content">
+                <img src="Images/ROG1.png" alt="ROG Flow X13 (2023) GV302" class="active">
+                <img src="Images/ROG2.png" alt="ROG Strix Scar 16 (2023) G634">
+                <img src="Images/ROG3.png" alt="ROG Strix G15 (2022)">
+                <img src="Images/ROG4.png" alt="ROG Zephyrus M16 (2022)">
+                <img src="Images/ROG5.png" alt="ROG Strix Scar 18 (2023) G834">
+                <div class="dropdown-item next">Next</div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>RAZER</span>
+            <div class="dropdown-content">
+                <img src="Images/RAZER1.png" alt="RAZER BLADE 14" class="active">
+                <img src="Images/RAZER2.png" alt="RAZER BLADE 15">
+                <img src="Images/RAZER3.png" alt="RAZER BLADE 16">
+                <img src="Images/RAZER4.png" alt="RAZER BLADE 17">
+                <img src="Images/RAZER5.png" alt="RAZER BLADE 18">
+                <div class="dropdown-item next">Next</div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>LEGION</span>
+            <div class="dropdown-content">
+                <img src="Images/LEGION1.png" alt="Lenovo Legion 9i" class="active">
+                <img src="Images/LEGION2.png" alt="Lenovo Legion Pro 7 Series">
+                <img src="Images/LEGION3.png" alt="Lenovo Legion Pro 5 Series">
+                <img src="Images/LEGION4.png" alt="Lenovo Legion slim 7 series">
+                <img src="Images/LEGION5.png" alt="Lenovo Legion slim 5 series">
+                <div class="dropdown-item next">Next</div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>PREDATOR</span>
+            <div class="dropdown-content">
+                <img src="Images/REDATOR1.png" alt="PREDATOR HELIOS NEO 16" class="active">
+                <img src="Images/REDATOR2.png" alt="PREDATOR HELIOS 18">
+                <img src="Images/REDATOR3.png" alt="PREDATOR TRITON 300 SE">
+                <img src="Images/REDATOR4.png" alt="PREDATOR HELIOS 300">
+                <img src="Images/REDATOR5.png" alt="PREDATOR HELIOS 300 EDISI SPACIALLABS">
+                <div class="dropdown-item next">Next</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     $(document).ready(function () {
+            $('.dropdown-content .next').on('click', function () {
+                var dropdown = $(this).closest('.dropdown');
+                var images = dropdown.find('img');
+                var activeIndex = images.filter('.active').index();
+                var nextIndex = (activeIndex + 1) % images.length;
+
+                images.removeClass('active');
+                images.eq(nextIndex).addClass('active');
+            });
+
+            $('.dropdown-content .back').on('click', function () {
+                var dropdown = $(this).closest('.dropdown');
+                dropdown.find('.dropdown-content').css('transform', 'scale(0)');
+                setTimeout(function () {
+                    var images = dropdown.find('img');
+                    images.not('.active').hide();
+                    dropdown.find('.back-button').show();
+                }, 300);
+            });
+
+            $('.back-button').on('click', function () {
+                var dropdown = $(this).closest('.dropdown');
+                dropdown.find('.dropdown-content').css('transform', 'scale(1)');
+                dropdown.find('.dropdown-content img').show();
+                dropdown.find('.back-button').hide();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background: linear-gradient(45deg, #FFB6C1, #ADD8E6, #FFB6C1, #ADD8E6, #FFB6C1, #ADD8E6, #FFB6C1);
+            border: 3px solid transparent;
+            background-size: 600% 100%;
+            animation: gradientBorder 5s linear infinite;
+        }
+
+        label {
+            margin: 10px;
+            display: block;
+        }
+
+        select, input {
+            margin: 5px;
+        }
+
+        #total-price {
+            font-weight: bold;
+            color: #333;
+        }
+
+        @keyframes gradientBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+    <title>Laptop Price Calculator</title>
+</head>
+<body>
+
+    <div class="calculator">
+        <label for="storage">Storage Disk:</label>
+        <select id="storage">
+            <option value="256GB" data-price="500000">256GB - IDR 500,000</option>
+            <option value="512GB" data-price="800000">512GB - IDR 800,000</option>
+            <option value="1TB" data-price="1200000">1TB - IDR 1,200,000</option>
+            <option value="No upgrade" data-price="0">No upgrade</option>
+        </select>
+
+        <label for="ram">RAM:</label>
+        <select id="ram">
+            <option value="8GB" data-price="400000">8GB - IDR 400,000</option>
+            <option value="16GB" data-price="700000">16GB - IDR 700,000</option>
+            <option value="32GB" data-price="1000000">32GB - IDR 1,000,000</option>
+            <option value="No upgrade" data-price="0">No upgrade</option>
+        </select>
+
+        <label for="processor">Processor:</label>
+        <select id="processor">
+            <option value="i5" data-price="600000">Intel Core i5 - IDR 600,000</option>
+            <option value="i7" data-price="900000">Intel Core i7 - IDR 900,000</option>
+            <option value="ryzen5" data-price="800000">AMD Ryzen 5 - IDR 800,000</option>
+            <option value="No upgrade" data-price="0">No upgrade</option>
+        </select>
+
+        <label for="graphics">Graphics Card:</label>
+        <select id="graphics">
+            <option value="integrated" data-price="0">Integrated Graphics</option>
+            <option value="gtx1650" data-price="1200000">NVIDIA GTX 1650 - IDR 1,200,000</option>
+            <option value="rx570" data-price="1000000">AMD RX 570 - IDR 1,000,000</option>
+            <option value="No upgrade" data-price="0">No upgrade</option>
+        </select>
+
+        <label for="service">Additional Service:</label>
+        <input type="checkbox" id="cleaning" value="cleaning"> Laptop Cleaning - IDR 50,000
+        <input type="checkbox" id="upgrade" value="upgrade"> Laptop Upgrade - IDR 100,000
+
+        <div id="total-price">Total Price: IDR 0</div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            function calculateTotalPrice() {
+                var storagePrice = parseFloat($('#storage option:selected').data('price'));
+                var ramPrice = parseFloat($('#ram option:selected').data('price'));
+                var processorPrice = parseFloat($('#processor option:selected').data('price'));
+                var graphicsPrice = parseFloat($('#graphics option:selected').data('price'));
+                var servicePrice = 0;
+
+                if ($('#cleaning').is(':checked')) {
+                    servicePrice += 50000;
+                }
+
+                if ($('#upgrade').is(':checked')) {
+                    servicePrice += 100000;
+                }
+
+                var totalPrice = storagePrice + ramPrice + processorPrice + graphicsPrice + servicePrice;
+
+                $('#total-price').text('Total Price: IDR ' + totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            }
+
+            $('#storage, #ram, #processor, #graphics, #cleaning, #upgrade').change(calculateTotalPrice);
+
+            calculateTotalPrice();
+        });
+    </script>
+
+</body>
+</html>

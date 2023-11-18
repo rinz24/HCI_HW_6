@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 10px solid;
+            border-image: linear-gradient(to bottom right, #aedbf2, #b7ebc3) 1;
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #556e88;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+    <title>Interactive Contact Form</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Personal information</h1>
+        <form id="contactForm" action="index.html" method="get">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <div class="error" id="nameError"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <div class="error" id="messageError"></div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#contactForm').submit(function(e) {
+                e.preventDefault();
+                $('.error').empty();
+
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var message = $('#message').val();
+
+                if (name === '') {
+                    $('#nameError').text('Name is required.');
+                }
+
+                if (email === '') {
+                    $('#emailError').text('Email is required.');
+                } else if (!isValidEmail(email)) {
+                    $('#emailError').text('Invalid email address.');
+                }
+
+                if (message === '') {
+                    $('#messageError').text('Message is required.');
+                }
+
+                if (name !== '' && email !== '' && isValidEmail(email) && message !== '') {
+                    alert('Form submitted successfully!');
+                    window.location.href = 'index.html';
+                }
+            });
+
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+
+</body>
+</html>

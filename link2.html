@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background-image: url('Images/default-background.jpg'); /* Default background */
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .filter-buttons {
+            margin: 20px;
+        }
+
+        .filter-buttons button {
+            padding: 10px;
+            margin: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #1200b3;
+        }
+
+        .filter-buttons button.selected {
+            background-color: black;
+        }
+
+        .filter-buttons button[data-category="MSI"].selected {
+            background-image: url('Images/Link2MSIbg.jpg');
+        }
+
+        .filter-buttons button[data-category="ROG"].selected {
+            background-image: url('Images/Link2ROGbg.jpg');
+        }
+
+        .filter-buttons button[data-category="RAZER"].selected {
+            background-image: url('Images/Link2RAZERbg.png');
+        }
+
+        .filter-buttons button[data-category="LEGION"].selected {
+            background-image: url('Images/Link2LEGIONbg.jpg');
+        }
+
+        .filter-buttons button[data-category="PREDATOR"].selected {
+            background-image: url('Images/Link2PREDATORbg.jpg');
+        }
+
+        .image {
+            transition: transform 0.5s ease-in-out;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .image.Msi img {
+            width: 100px;
+        }
+
+        .image.PREDATOR img {
+            width: 600px;
+        }
+
+        .float-up {
+            transform: translateY(-20px);
+        }
+    </style>
+    <title>Gaming Laptop Gallery</title>
+</head>
+
+<body>
+
+    <div class="filter-buttons">
+        <button data-category="all">All</button>
+        <button data-category="MSI">MSI</button>
+        <button data-category="ROG">ROG</button>
+        <button data-category="RAZER">RAZER</button>
+        <button data-category="LEGION">LEGION</button>
+        <button data-category="PREDATOR">PREDATOR</button>
+    </div>
+
+    <div class="gallery" id="imageGallery">
+        <div class="image MSI"><img src="Images/Link2MSI-removebg-preview.png" alt="MSI Laptop "></div>
+        <div class="image ROG"><img src="Images/Link2ROG-removebg-preview.png" alt="ROG Laptop "></div>
+        <div class="image RAZER"><img src="Images/Link2RAZER-removebg-preview.png" alt="RAZER Laptop "></div>
+        <div class="image LEGION"><img src="Images/Link2Legion-removebg-preview.png" alt="Legion Laptop "></div>
+        <div class="image PREDATOR"><img src="Images/Link2PREDATOR-removebg-preview.png" alt="Predator Laptop "></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.filter-buttons button').on('click', function () {
+                var category = $(this).data('category');
+                var backgroundImage;
+
+                switch (category) {
+                    case 'all':
+                        backgroundImage = 'black';
+                        break;
+                    case 'MSI':
+                        backgroundImage = 'url("Images/Link2MSIbg.jpg")';
+                        break;
+                    case 'ROG':
+                        backgroundImage = 'url("Images/Link2ROGbg.jpg")';
+                        break;
+                    case 'RAZER':
+                        backgroundImage = 'url("Images/Link2RAZERbg.png")';
+                        break;
+                    case 'LEGION':
+                        backgroundImage = 'url("Images/Link2LEGIONbg.jpg")';
+                        break;
+                    case 'PREDATOR':
+                        backgroundImage = 'url("Images/Link2PREDATORbg.jpg")';
+                        break;
+                    default:
+                        backgroundImage = 'url("Images/default-background.jpg")';
+                }
+
+                $('.gallery').css({
+                    'background-image': backgroundImage,
+                    'background-size': 'cover',
+                });
+
+                filterImages(category);
+                floatUpImages();
+
+                $('.filter-buttons button').removeClass('selected');
+                $(this).addClass('selected');
+            });
+        });
+
+        function filterImages(category) {
+            $('#imageGallery .image').each(function () {
+                var imageCategory = $(this).attr('class').split(' ')[1];
+
+                if (category === 'all' || imageCategory === category) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+
+        function floatUpImages() {
+            $('#imageGallery .image').removeClass('float-up');
+            setTimeout(function () {
+                $('#imageGallery .image:visible').addClass('float-up');
+            }, 50);
+        }
+    </script>
+
+</body>
+
+</html>

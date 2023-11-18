@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .background-images {
+            display: flex;
+            width: 500%;
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .background-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .dropdown-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            user-select: none;
+        }
+
+        .dropdown span {
+            display: block;
+            background-color: white; 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: center;
+        }
+
+        .dropdown-content p {
+            padding: 10px;
+            margin: 0;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+    <title>Laptop Specs Dropdown</title>
+</head>
+<body>
+    <div class="background-container">
+        <div class="background-images">
+            <img class="background-img" src="Images/SATU.jpg" alt="Background Image 1">
+            <img class="background-img" src="Images/DUA.jpeg" alt="Background Image 2">
+            <img class="background-img" src="Images/TIGA.jpg" alt="Background Image 3">
+            <img class="background-img" src="Images/EMPAT.jpg" alt="Background Image 4">
+            <img class="background-img" src="Images/LIMA.jpg" alt="Background Image 5">
+        </div>
+    </div>
+    
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <span>CPU</span>
+            <div class="dropdown-content">
+                <p>Intel Core i7</p>
+                <p>AMD Ryzen 9</p>
+                <p>Apple M1</p>
+                <p>Qualcomm Snapdragon</p>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>OS</span>
+            <div class="dropdown-content">
+                <p>Windows 10</p>
+                <p>macOS Big Sur</p>
+                <p>Ubuntu Linux</p>
+                <p>Chrome OS</p>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>Display</span>
+            <div class="dropdown-content">
+                <p>15.6-inch FHD</p>
+                <p>13.3-inch Retina</p>
+                <p>14-inch QHD</p>
+                <p>17.3-inch 4K</p>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>Graphics</span>
+            <div class="dropdown-content">
+                <p>NVIDIA GeForce RTX 3080</p>
+                <p>AMD Radeon RX 6700 XT</p>
+                <p>Intel Iris Xe</p>
+                <p>Integrated Graphics</p>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <span>Memory</span>
+            <div class="dropdown-content">
+                <p>16GB DDR4</p>
+                <p>32GB DDR5</p>
+                <p>8GB LPDDR4X</p>
+                <p>64GB HBM2</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $(".background-images").animate({marginLeft: "-=100%"}, 1500, function() {
+                    $(this).append($(".background-img:first"));
+                    $(this).css("margin-left", "0");
+                });
+            }, 4000);
+        });
+    </script>
+
+</body>
+</html>
